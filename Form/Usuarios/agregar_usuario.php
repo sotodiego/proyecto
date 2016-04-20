@@ -244,7 +244,7 @@ require("../../scripts/recibir_variables.php");
                                                     <select class="form-control ui dropdown" name="nivel" id="nivel">
                                                         <option value="">Nivel</option>
                                                         <option value="usuario">Usuario</option>
-                                                        <option value="administrador">Administrador</option>
+                                                        <option value="Administrador">Administrador</option>
 
                                                     </select>
                                                 </div>
