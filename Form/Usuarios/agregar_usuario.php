@@ -83,13 +83,13 @@ require("../../scripts/recibir_variables.php");
                                 <li class="divider"></li>
 
                                 <li>
-                                     <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
+                                    <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
                                         <i class="fa fa-user fa-fw pull-right"></i>
                                         Perfil
                                     </a>
                                     <a data-toggle="modal" href="#">
-                                        
-                                       
+
+
                                     </a>
                                 </li>
 
@@ -239,14 +239,16 @@ require("../../scripts/recibir_variables.php");
 
                                                 </select>
                                             </div>
-                                            <div class="form-group col-sm-6">
-                                                <select class="form-control ui dropdown" name="nivel" id="nivel">
-                                                    <option value="">Nivel</option>
-                                                    <option value="usuario">Usuario</option>
-                                                    <option value="administrador">Administrador</option>
+                                            <?php if ($_SESSION['nivelu'] == 'Administrador') { ?>
+                                                <div class="form-group col-sm-6">
+                                                    <select class="form-control ui dropdown" name="nivel" id="nivel">
+                                                        <option value="">Nivel</option>
+                                                        <option value="usuario">Usuario</option>
+                                                        <option value="administrador">Administrador</option>
 
-                                                </select>
-                                            </div>
+                                                    </select>
+                                                </div>
+                                            <?php } ?>
                                             <div class="form-group col-sm-6">
                                                 <label class="sr-only" for="exampleInputEmail2">Email</label>
                                                 <input name="email" type="email" class="form-control" id="email" placeholder="Email">
