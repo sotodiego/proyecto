@@ -240,7 +240,7 @@ $idmsg = $_GET['idmsg'];
                                                 <td><?php echo $fila['frecuencia_vac']; ?></td>
                                                 <td><?php echo $fila['cantidad_ref']; ?></td>
                                                 <td>
-                                                    <?php if ($_SESSION['nivelu'] == 'Administrador') { ?>
+                                                    <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
                                                         <a href="editar_vacuna.php?idvac=<?php echo $fila['id_vacuna']; ?>"<button class="btn btn-default btn-xs"><i class="fa fa-pencil task-title-sp"></i></button></a>
                                                         <a href="../../scripts/eliminar_vac.php?idvac=<?php echo $fila['id_vacuna']; ?>"<button class="btn btn-default btn-xs"><i class="fa fa-times task-title-sp"></i></button></a>
                                                     <?php } ?>

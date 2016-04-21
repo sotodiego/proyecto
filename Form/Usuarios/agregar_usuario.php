@@ -239,7 +239,7 @@ require("../../scripts/recibir_variables.php");
 
                                                 </select>
                                             </div>
-                                            <?php if ($_SESSION['nivelu'] == 'Administrador') { ?>
+                                            <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
                                                 <div class="form-group col-sm-6">
                                                     <select class="form-control ui dropdown" name="nivel" id="nivel">
                                                         <option value="">Nivel</option>

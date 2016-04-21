@@ -244,7 +244,7 @@ $idmsg = $_GET['idmsg'];
 
                                                     <td>
                                                         <a href="ver_bebe.php?id_bebe=<?php echo $fila['id_bebe']; ?>" <button class="btn btn-default btn-xs" title="Ver"><i class="fa fa-check task-title-sp"></i></button></a>
-                                                        <?php if ($_SESSION['nivelu'] == 'Administrador') { ?>
+                                                        <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
         <!--<a href="editar_bebe.php?id_bebe=<?php echo $fila['id_bebe']; ?>"<button class="btn btn-default btn-xs" title="Editar"><i class="fa fa-pencil task-title-sp"></i></button></a>-->
                                                             <!--<a href="../../scripts/eliminar_bebe.php?id_bebe=<?php echo $fila['id_bebe']; ?>"<button class="btn btn-default btn-xs" title="Eliminar"><i class="fa fa-times task-title-sp"></i></button></a>-->
                                                         <?php } ?>

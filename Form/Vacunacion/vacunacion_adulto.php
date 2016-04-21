@@ -91,13 +91,13 @@ if ($cant == 0) {
                                     <li class="divider"></li>
 
                                     <li>
-                                         <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
+                                        <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
                                             <i class="fa fa-user fa-fw pull-right"></i>
                                             Perfil
                                         </a>
                                         <a data-toggle="modal" href="#">
-                                            
-                                           
+
+
                                         </a>
                                     </li>
 
@@ -221,21 +221,21 @@ if ($cant == 0) {
                                         </header>
                                         <div class="panel-body">
                                             <form class="form-group" role="form" name="form1" id="form1" method="post" action="../../scripts/agregar_vac_adulto.php?id_paciente=<?php echo $fila['id_paciente']; ?>">
-
-                                                <div class="form-group col-sm-6">
-                                                    <label class="sr-only" >Nombre</label>
-                                                    <input name="nombre_pac" type="text" class="form-control" readonly="readonly" value="<?php echo $fila['nombre_pac']; ?>" id="nombre_pac" placeholder="Nombre el Paciente...">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                    <label class="sr-only" >Apellido</label>
-                                                    <input name="apellido_pac" type="text" class="form-control" readonly="readonly" value="<?php echo $fila['apellido_pac']; ?>" id="apellido_pac" placeholder="Apellido del Paciente...">
+                                                <div class="container">
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="sr-only" >Nombre</label>
+                                                        <input name="nombre_pac" type="text" class="form-control" readonly="readonly" value="<?php echo $fila['nombre_pac']; ?>" id="nombre_pac" placeholder="Nombre el Paciente...">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="sr-only" >Apellido</label>
+                                                        <input name="apellido_pac" type="text" class="form-control" readonly="readonly" value="<?php echo $fila['apellido_pac']; ?>" id="apellido_pac" placeholder="Apellido del Paciente...">
+                                                    </div>
                                                 </div>
 
                                                 <div class="table-responsive">
                                                     <table class="table table-condensed table-bordered table-hover">
                                                         <thead>
                                                             <tr>
-
                                                                 <th>Nombre</th>
                                                                 <th>Abreviatura</th>
                                                                 <th>Vacunar (Primera vez)</th>
@@ -245,7 +245,6 @@ if ($cant == 0) {
                                                         <tbody>
                                                             <?php while ($fila_vacunas = mysql_fetch_array($vacunas_listado)) { ?>
                                                                 <tr>
-
                                                                     <td><?php echo $fila_vacunas['nombre_vac']; ?></td>
                                                                     <td><?php echo $fila_vacunas['abreviatura_vac']; ?></td>
                                                                     <td class="form-group col-sm-4"><input name="vacunado[]" type="checkbox" value="<?php echo $fila_vacunas['id_vacuna']; ?>" class="form-control" id="vacunado"></td>

@@ -85,13 +85,13 @@ $fila = mysql_fetch_array($consulta);
                                 <li class="divider"></li>
 
                                 <li>
-                                     <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
+                                    <a href="../Usuarios/editar_usuario.php?idusu=<?php echo $_SESSION['idusu']; ?>">
                                         <i class="fa fa-user fa-fw pull-right"></i>
                                         Perfil
                                     </a>
                                     <a data-toggle="modal" href="#">
-                                        
-                                       
+
+
                                     </a>
                                 </li>
 
@@ -241,14 +241,16 @@ $fila = mysql_fetch_array($consulta);
 
                                                 </select>
                                             </div>
-                                            <div class="form-group col-sm-6">
-                                                <select class="form-control ui dropdown" name="nivel" id="nivel">
-                                                    <option value=""><?php echo $fila['nivel_usu']; ?></option>
-                                                    <option value="usuario">Usuario</option>
-                                                    <option value="administrador">Administrador</option>
+                                            <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
+                                                <div class="form-group col-sm-6">
+                                                    <select class="form-control ui dropdown" name="nivel" id="nivel">
+                                                        <option value="">Nivel</option>
+                                                        <option value="usuario">Usuario</option>
+                                                        <option value="Administrador">Administrador</option>
 
-                                                </select>
-                                            </div>
+                                                    </select>
+                                                </div>
+                                            <?php } ?>
                                             <div class="form-group col-sm-6">
                                                 <label class="sr-only" for="exampleInputEmail2">Email</label>
                                                 <input name="email" type="email" class="form-control" value="<?php echo $fila['email_usu']; ?>" id="email" placeholder="Email">

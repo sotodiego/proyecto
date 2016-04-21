@@ -203,6 +203,7 @@ require ("../../scripts/restringir_acceso.php");
 
                     <!-- Main row -->
                     <EditableRegion>
+                         <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
                         <div class="row">
                             <div class="col-sm-6 col-md-3">
                                 <div class="thumbnail">
@@ -224,6 +225,9 @@ require ("../../scripts/restringir_acceso.php");
 
                             </div>
                         </div>
+                         <?php }else { ?>
+                        Usted no tiene permisos de administrador para acceder a estar área
+                         <?php }?>
                     </EditableRegion>
 
 

@@ -249,11 +249,12 @@ $idmsg = $_GET['idmsg'];
 
                                         </ul>
                                     </div>
+                                    <?php if ($_SESSION['nivelusu'] == 'Administrador') { ?>
+                                        <div class=" add-task-row">
+                                            <a class="btn btn-success btn-sm pull-left" href="../Usuarios/agregar_usuario.php">Agregar</a>
 
-                                    <div class=" add-task-row">
-                                        <a class="btn btn-success btn-sm pull-left" href="../Usuarios/agregar_usuario.php">Agregar</a>
-
-                                    </div>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </section>
                         </div>

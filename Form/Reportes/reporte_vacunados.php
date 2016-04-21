@@ -68,7 +68,7 @@ if (isset($_GET['pageNum_listado'])) {
 $startRow_listado = $pageNum_listado * $maxRows_listado;
 
 mysql_select_db($database_conexion, $conexion);
-$query_listado = "SELECT * FROM salida_inventario, pacientes WHERE salida_inventario.id_paciente=pacientes.id_paciente" . $criterio;
+$query_listado = "SELECT * FROM salida_vacunas, pacientes WHERE salida_vacunas.id_paciente=pacientes.id_paciente" . $criterio;
 $query_limit_listado = sprintf("%s LIMIT %d, %d", $query_listado, $startRow_listado, $maxRows_listado);
 $listado = mysql_query($query_limit_listado, $conexion) or die(mysql_error());
 $row_listado = mysql_fetch_assoc($listado);
