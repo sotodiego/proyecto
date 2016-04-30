@@ -68,7 +68,7 @@ if (isset($_GET['pageNum_listado'])) {
 $startRow_listado = $pageNum_listado * $maxRows_listado;
 
 mysql_select_db($database_conexion, $conexion);
-$query_listado = "SELECT * FROM salida_vacunas, pacientes WHERE salida_vacunas.id_paciente=pacientes.id_paciente" . $criterio;
+$query_listado = "SELECT * FROM salida_inventario, salida_vacunas, pacientes WHERE salida_inventario.id_paciente=pacientes.id_paciente AND salida_vacunas.id_paciente=pacientes.id_paciente " . $criterio;
 $query_limit_listado = sprintf("%s LIMIT %d, %d", $query_listado, $startRow_listado, $maxRows_listado);
 $listado = mysql_query($query_limit_listado, $conexion) or die(mysql_error());
 $row_listado = mysql_fetch_assoc($listado);
@@ -136,7 +136,7 @@ $queryString_listado = sprintf("&chkcedula=%d&chkedad=%d&chksexo=%d&chkfecha=%d&
         <link href="../../css/morris/morris.css" rel="stylesheet" type="text/css" />
         <!-- jvectormap -->
         <link href="../../css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-       
+
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -422,30 +422,40 @@ $queryString_listado = sprintf("&chkcedula=%d&chkedad=%d&chksexo=%d&chkfecha=%d&
                                         <button data-dismiss = "alert" class = "close close-sm" type = "button">
                                             <i class = "fa fa-times"></i>
                                         </button>
-                                        Registros encontrados:  <?php echo $totalRows_listado; ?>
-                                    </div>
 
-                                    <?php if ($totalRows_listado > 0) { // Show if recordset not empty    ?>
-                                        <?php
-                                        do {
-                                            $i++;
-                                            ?>
-                                            <tr>
-                                                <td scope="row"><?php echo $i; ?></td>
-                                                <td><?php echo $row_listado['nombre_pac']; ?></td>
-                                                <td><?php echo $row_listado['apellido_pac']; ?></td>
-                                                <td><?php echo $row_listado['cedula_pac']; ?></td>
-                                                <td><a href="../Vacunacion/listado_adultos_vacunados.php?id_paciente=<?php echo $row_listado['id_paciente']; ?>"<span>Ver vacunas</span></a></td>
-                                                <td><a href="../Pacientes/ver_paciente.php?id_paciente=<?php echo $row_listado['id_paciente']; ?>"<span>Información</span></a></td>
+                                        Registros encontrados:<?php echo $c; ?> <?php
+                                        $cedula = 0;
+                                        if ($totalRows_listado > 0) {// Show if recordset not empty  
+                                            do {
+                                                ?>
+                                                <?php
+                                                if ($cedula != $row_listado['cedula_pac']) {
+                                                    $i++;
+                                                    $c = count($i);
+                                                    ?>
+
+                                                </div>
+                                                <tr>                                             
+                                                    <td scope="row"><?php echo $i; ?></td>
+                                                    <td><?php echo $row_listado['nombre_pac']; ?></td>
+                                                    <td><?php echo $row_listado['apellido_pac']; ?></td>
+                                                    <td><?php echo $row_listado['cedula_pac']; ?></td>
+                                                    <td><a href="../Vacunacion/vacunas_por_paciente.php?id_paciente=<?php echo $row_listado['id_paciente']; ?>"<span>Ver vacunas</span></a></td>
+                                                    <td><a href="../Pacientes/ver_paciente.php?id_paciente=<?php echo $row_listado['id_paciente']; ?>"<span>Información</span></a></td>
+                                                    <?php
+                                                    $cedula = $row_listado['cedula_pac'];
+                                                } else
+                                                    echo "&nbsp;";
+                                                ?>
                                             </tr>
                                         <?php } while ($row_listado = mysql_fetch_assoc($listado)); ?>
-                                    <?php } // Show if recordset not empty         ?>
+                                    <?php } // Show if recordset not empty                ?>
                                     <div class="box-tools">
                                         <ul class="pagination pagination-sm m-b-10 m-t-10 pull-right">
-                                            <li><?php if ($pageNum_listado > 0) { // Show if not first page               ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, 0, $queryString_listado); ?>">Inicio</a>  <?php } // Show if not first page               ?></li>
-                                            <li><?php if ($pageNum_listado > 0) { // Show if not first page             ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, max(0, $pageNum_listado - 1), $queryString_listado); ?>">Atras</a> <?php } // Show if not first page             ?></li>
-                                            <li><?php if ($pageNum_listado < $totalPages_listado) { // Show if not last page            ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, min($totalPages_listado, $pageNum_listado + 1), $queryString_listado); ?>">Siguiente</a><?php } // Show if not last page            ?></li>
-                                            <li><?php if ($pageNum_listado < $totalPages_listado) { // Show if not last page           ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, $totalPages_listado, $queryString_listado); ?>">Final</a> <?php } // Show if not last page           ?></li>
+                                            <li><?php if ($pageNum_listado > 0) { // Show if not first page                           ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, 0, $queryString_listado); ?>">Inicio</a>  <?php } // Show if not first page                           ?></li>
+                                            <li><?php if ($pageNum_listado > 0) { // Show if not first page                         ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, max(0, $pageNum_listado - 1), $queryString_listado); ?>">Atras</a> <?php } // Show if not first page                         ?></li>
+                                            <li><?php if ($pageNum_listado < $totalPages_listado) { // Show if not last page                        ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, min($totalPages_listado, $pageNum_listado + 1), $queryString_listado); ?>">Siguiente</a><?php } // Show if not last page                        ?></li>
+                                            <li><?php if ($pageNum_listado < $totalPages_listado) { // Show if not last page                       ?><a href="<?php printf("%s?pageNum_listado=%d%s", $currentPage, $totalPages_listado, $queryString_listado); ?>">Final</a> <?php } // Show if not last page                       ?></li>
                                         </ul>
                                     </div>
 
@@ -472,9 +482,9 @@ $queryString_listado = sprintf("&chkcedula=%d&chkedad=%d&chksexo=%d&chkfecha=%d&
 
         <script src="../../js/plugins/chart.js" type="text/javascript"></script>
 
-     
+
         <script src="../../js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-            
+
 
         <!-- Director App -->
         <script src="../../js/Director/app.js" type="text/javascript"></script>

@@ -63,6 +63,8 @@ for ($i = 0; $i <= count($vacunado); $i++) {
                     $actualizar_salida = mysql_query("UPDATE salida_inventario SET cantidad_salida='$total' WHERE id_paciente='$id_paciente'") or die(mysql_error());
                 }
             }
+            //Ingresar la fecha de las vacunas aplicadas al paciente
+            $salida_vacunas = mysql_query("INSERT INTO salida_vacunas VALUES('','$fecha','$id_paciente','0','$vacunado[$i]')") or die(mysql_error());
         }
     }
 }
