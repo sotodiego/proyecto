@@ -1,7 +1,10 @@
 <?php
 require("conexion.php");
 require ("scripts/recibir_variables.php");
-require ("scripts/restringir_acceso.php");
+
+if (!isset($_SESSION['nickusu']) || !isset($_SESSION['idusu']) || !isset($_SESSION['nivelusu'])) {
+    header("location:login_index.php");
+}
 $fecha = date("Y-m-d");
 $idmsg = $_GET['idmsg'];
 if (!empty($chkcedula)) {
